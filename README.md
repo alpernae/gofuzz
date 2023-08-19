@@ -7,7 +7,7 @@ DirScout is a simple Python-based tool that scans directories of websites.
 1. Clone this repository to your local machine or download it as a ZIP file.
 
     ```
-    git clone https://github.com/alpernae/DirScout.git
+    git clone https://github.com/alpernae/dirscout.git
     ```
 
 2. Install Python (if not already installed): [Python Download Page](https://www.python.org/downloads/)
