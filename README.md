@@ -1,6 +1,6 @@
-# DirScout - Fuzzing Tool
+# GoFuzz - Fuzzing Tool
 
-DirScout is a simple Python-based tool that scans directories of websites.
+GoFuzz is a lightweight Python-based web directory scanning tool designed to help security professionals and web administrators identify potential vulnerabilities in websites. By systematically testing different directory paths and filenames, GoFuzz assists in the discovery of hidden or unprotected content that could pose security risks. With its simplicity and versatility, GoFuzz is a valuable addition to any web security toolkit, aiding in the enhancement of web application security by pinpointing areas that may require additional protection.
 
 ## Download and Installation
 
@@ -20,11 +20,10 @@ DirScout is a simple Python-based tool that scans directories of websites.
 
 ## Usage
 
-You can use DirScout as follows:
+You can use GoFuzz as follows:
 
-```
-python dirscout.py -u <target_url> -w <wordlist_file> -t <timeout> -l <log_name>
-```
+`python gofuzz.py -u <target_url> -w <wordlist_file> -t <timeout> -l <log_name>`
+
 
 Parameters:
 
@@ -35,9 +34,8 @@ Parameters:
 
 Example:
 
-```
-python dirscout.py -u https://example.com -w wordlist.txt -t 10 -l my_log.txt
-```
+`python gofuzz.py -u https://example.com -w wordlist.txt -t 10 -l my_log.txt`
+
 
 ## Contributions
 
