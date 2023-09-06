@@ -1,4 +1,4 @@
-# DirScout - Web Folder Scanner
+# DirScout - Fuzzing Tool
 
 DirScout is a simple Python-based tool that scans directories of websites.
 
