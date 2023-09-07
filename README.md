@@ -1,6 +1,6 @@
 # GoFuzz - Fuzzing Tool
 
-GoFuzz is a lightweight Python-based web directory scanning tool designed to help security professionals and web administrators identify potential vulnerabilities in websites. By systematically testing different directory paths and filenames, GoFuzz assists in the discovery of hidden or unprotected content that could pose security risks. With its simplicity and versatility, GoFuzz is a valuable addition to any web security toolkit, aiding in the enhancement of web application security by pinpointing areas that may require additional protection.
+GoFuzz is a lightweight Python-based fuzzing scanning tool designed to help security professionals and web administrators identify potential vulnerabilities in websites. By systematically testing different directory paths and filenames, GoFuzz assists in the discovery of hidden or unprotected content that could pose security risks. With its simplicity and versatility, GoFuzz is a valuable addition to any web security toolkit, aiding in the enhancement of web application security by pinpointing areas that may require additional protection.
 
 ## Download and Installation
 
