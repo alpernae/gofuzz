@@ -7,7 +7,7 @@ GoFuzz is a lightweight Python-based web directory scanning tool designed to hel
 1. Clone this repository to your local machine or download it as a ZIP file.
 
     ```
-    git clone https://github.com/alpernae/dirscout.git
+    git clone https://github.com/alpernae/gofuzz.git
     ```
 
 2. Install Python (if not already installed): [Python Download Page](https://www.python.org/downloads/)
@@ -30,7 +30,9 @@ Parameters:
 - `-u` or `--url`: URL of the target website to scan.
 - `-w` or `--wordlist`: Path to the wordlist file to be used by the scanner.
 - `-t` or `--timeout`: Timeout duration for requests (default is 5 seconds).
-- `-l`: Name of the log name where scan results will be saved (default is "logs").
+- `-l` or `--log`: Specifies the name of a log file to save scan results (default: log.txt).
+- `-c` or `--cookies`: Specifies custom cookies to include in requests.
+- `-mc` or `--code`: Specifies example response codes to display (e.g., "200,404").
 
 Example:
 
