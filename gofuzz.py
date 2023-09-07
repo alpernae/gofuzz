@@ -58,7 +58,7 @@ def scan_folders(base_url, wordlist_file, timeout, log_file, example_codes, cook
                 print_progress_bar(progress_percentage)
                 
                 if stop_scan:
-                    print("\n\nTarama durduruldu.")
+                    print("\n\nScan Stopted!.")
                     break
                 
     except KeyboardInterrupt:
