@@ -6,6 +6,8 @@ from termcolor import colored
 import warnings
 import datetime
 import sys
+import signal
+import os
 
 # Tüm uyarıları kapat
 warnings.filterwarnings("ignore")
@@ -29,10 +31,11 @@ def scan_folders(base_url, wordlist_file, timeout, log_file, example_codes, cook
 ██╔════╝░██╔══██╗██╔════╝██║░░░██║╚════██║╚════██║
 ██║░░██╗░██║░░██║█████╗░░██║░░░██║░░███╔═╝░░███╔═╝
 ██║░░╚██╗██║░░██║██╔══╝░░██║░░░██║██╔══╝░░██╔══╝░░
-╚██████╔╝╚█████╔╝██║░░ v.1 ░░░╚██████╔╝███████╗███████╗
-░╚═════╝░░╚════╝░╚═╝░░░░░░╚═════╝░╚══════╝╚══════╝                                                                                        
+╚██████╔╝╚█████╔╝██║░░ v.1.0.0#stable ░░░╚██████╔╝███████╗███████╗
+░╚═════╝░░╚════╝░╚═╝░░░░░░╚═════╝░╚══════╝╚══════╝
 
-\n""")
+Developer: @alpernae
+Web: https://github.com/alpernae/gofuzz\n""")
             print( "\n" + colored("[!]", 'yellow') + " Scanning Started!\n")
             for index, fuzz in enumerate(wordlist, start=1):
                 target_url = f"{base_url}/{fuzz}"
@@ -58,11 +61,11 @@ def scan_folders(base_url, wordlist_file, timeout, log_file, example_codes, cook
                 print_progress_bar(progress_percentage)
                 
                 if stop_scan:
-                    print("\n\nScan Stopted!.")
+                    print("\n\nScan Stopped.")
                     break
                 
     except KeyboardInterrupt:
-        print("\n\nTarama durduruldu.")
+        print("\n\nScan Stopped.")
         sys.exit(0)
 
 def should_show_status(status_code, example_codes, response_text):
@@ -91,7 +94,7 @@ def stop_scan_prompt():
     while True:
         choice = input("To continue, press 'c'. To exit the scan, press 'q': ").strip().lower()
         if choice == 'q':
-            print("\nScan successfully terminated.")
+            print("\nScan terminated.")
             sys.exit(0)
         elif choice == 'c':
             print("\nScan is continuing...")
@@ -99,6 +102,28 @@ def stop_scan_prompt():
             return
         else:
             print("Invalid choice. Please select 'c' to continue or 'q' to exit.")
+
+def signal_handler(sig, frame):
+    global stop_scan
+    if stop_scan:
+        print("\nScan successfully terminated.")
+        sys.exit(0)
+    else:
+        print(colored("\n\nScan is being stopped. To completely terminate the scan, press 'q'. To continue, press 'c'.", 'red'))
+        choice = input().strip().lower()
+        if choice == 'q':
+            print("\nScan terminated.")
+            sys.exit(0)
+        elif choice == 'c':
+            print("\nScan is continuing...")
+            stop_scan = False
+
+def sigtstp_handler(sig, frame):
+    print("\nScan terminated by Ctrl + Z.")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTSTP, sigtstp_handler)
 
 def main():
     global stop_scan
@@ -109,7 +134,7 @@ GoFuzz -  Fuzzing Tool
 """
 )
     parser.add_argument("-u", "--url", required=True, help="Base URL to scan")
-    parser.add_argument("-w", "--wordlist", default="wordlist/dirsearch.txt", help="Path to the wordlist file")
+    parser.add_argument("-w", "--wordlist", default="wordlist/default.txt", help="Path to the wordlist file")
     parser.add_argument("-t", "--timeout", type=float, default=1, help="Request timeout in seconds")
     parser.add_argument("-l", "--log", default="log.txt", help="Output Log file name")
     parser.add_argument("-c", "--cookies", default="", help="Custom cookies to include in requests")
